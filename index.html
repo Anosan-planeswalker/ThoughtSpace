@@ -1,0 +1,70 @@
+Чтобы создать фон, который будет напоминать черный космос с редкими белыми звёздочками, можно использовать CSS. Вот пример кода, который вам поможет это реализовать:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космический фон</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden; /* Убираем прокрутку */
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.5; /* Полупрозрачность звёзд */
+        }
+
+        /* Генерация звёзд */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Количество звёзд
+        const starCount = 100;
+
+        // Генерация звёзд
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1; // Размер звезды от 1 до 4 пикселей
+            const x = Math.random() * window.innerWidth; // Случайная позиция по X
+            const y = Math.random() * window.innerHeight; // Случайная позиция по Y
+
+            // Установка стилей
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${x}px`;
+            star.style.top = `${y}px`;
+            star.style.animation = `twinkle ${Math.random() * 1 + 0.5}s infinite`; // Плавное мерцание
+
+            document.body.appendChild(star);
+        }
+    </script>
+</body>
+</html>
+```
+
+### Объяснение кода:
+
+1. **HTML**: Создаём базовую структуру страницы.
+2. **CSS**:
+   - Устанавливаем черный фон страницы.
+   - Создаём класс `.star` для звёзд, задавая им белый цвет, круглую форму и полупрозрачность.
+   - Используем анимацию `twinkle` для мерцания звёзд.
+3. **JavaScript**:
+   - Генерируем случайное количество звёзд с заданными размерами и позициями на экране.
+   - Каждая звезда добавляется к `body` и получает случайную анимацию мерцания.
+
+Вы можете изменить количество звёзд, их размеры и скорость анимации для создания вашего уникального космического фона!
